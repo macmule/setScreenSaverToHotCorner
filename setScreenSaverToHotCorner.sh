@@ -20,7 +20,7 @@ hotCornerToUse=""
 
 # CHECK TO SEE IF A VALUE WAS PASSED IN PARAMETER 4 AND, IF SO, ASSIGN TO "hotCornerToUse"
 if [ "$4" != "" ] && [ "$hotCornerToUse" == "" ];then
-hotCornerToUse=$4
+	hotCornerToUse=$4
 fi
 
 ##################################################################
@@ -31,8 +31,8 @@ fi
 
 # Exit if no Hot Corner set
 if [ "$hotCornerToUse" == "" ]; then
-echo "Error: The parameter 'hotCornerToUse' is blank. Please specify a Hot Corner To Use..."
-exit 1
+	echo "Error: The parameter 'hotCornerToUse' is blank. Please specify a Hot Corner To Use..."
+	exit 1
 fi
 
 # Get the logged in users username
@@ -46,27 +46,27 @@ hcbr=`defaults read /Users/$loggedInUser/Library/Preferences/com.apple.dock wvou
 
 # If hot corners have been set for the above.. then assign a value to hotcorners variable
 if [[ "$hctl" = 5 ]]; then
-hotcornerset=$((hotcornerset+1))
+	hotcornerset=$((hotcornerset+1))
 fi
 
 if [[ "$hctr" = 5 ]]; then
-hotcornerset=$((hotcornerset+1))
+	hotcornerset=$((hotcornerset+1))
 fi
 
 if [[ "$hcbl" = 5 ]]; then
-hotcornerset=$((hotcornerset+1))
+	hotcornerset=$((hotcornerset+1))
 fi
 
 if [[ "$hcbr" = 5 ]]; then
-hotcornerset=$((hotcornerset+1))
+	hotcornerset=$((hotcornerset+1))
 fi
 
 if [[ "$hotcornerset" > 0 ]]; then
-echo "Hot Corner already set.."
+	echo "Hot Corner already set.."
 else
-defaults write /Users/$loggedInUser/Library/Preferences/com.apple.dock wvous-$hotCornerToUse-corner -int 5
-defaults write /Users/$loggedInUser/Library/Preferences/com.apple.dock wvous-$hotCornerToUse-modifier -int 1
-chmod 777 /Users/$loggedInUser/Library/Preferences/com.apple.dock.plist
-killall Dock
-echo "Hot Corner set to $hotCornerToUse..."
+	defaults write /Users/$loggedInUser/Library/Preferences/com.apple.dock wvous-$hotCornerToUse-corner -int 5
+	defaults write /Users/$loggedInUser/Library/Preferences/com.apple.dock wvous-$hotCornerToUse-modifier -int 1
+	chmod 777 /Users/$loggedInUser/Library/Preferences/com.apple.dock.plist
+	killall Dock
+	echo "Hot Corner set to $hotCornerToUse..."
 fi
